@@ -16,6 +16,17 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        camera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        float rounded_x = RoundToNearestPixel(player.transform.position.x);
+        float rounded_y = RoundToNearestPixel(player.transform.position.y);
+        camera.transform.position = new Vector3(rounded_x, rounded_y, -10);
+    }
+
+    float pixelToUnits = 1000f;
+    public float RoundToNearestPixel(float unityUnits)
+    {
+        float valueInPixels = unityUnits * pixelToUnits;
+        valueInPixels = Mathf.Round(valueInPixels);
+        float roundedUnityUnits = valueInPixels * (1 / pixelToUnits);
+        return roundedUnityUnits;
     }
 }
