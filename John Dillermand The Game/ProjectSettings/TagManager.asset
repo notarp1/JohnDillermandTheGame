@@ -6,6 +6,8 @@ TagManager:
   tags:
   - hbUp
   - Hitbox
+  - wall
+  - roof
   layers:
   - Default
   - TransparentFX
