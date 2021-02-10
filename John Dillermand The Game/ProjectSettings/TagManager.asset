@@ -3,16 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Entrance
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - background
   - Water
   - UI
-  - 
-  - 
+  - collisionstuff
+  - player
   - 
   - 
   - 
@@ -40,4 +41,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Collision
+    uniqueID: 3513833173
+    locked: 0
+  - name: Entrances
+    uniqueID: 1943517895
+    locked: 0
+  - name: Player
+    uniqueID: 1026641825
     locked: 0
