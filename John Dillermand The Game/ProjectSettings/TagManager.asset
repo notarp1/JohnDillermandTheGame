@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Entrance
+  - slot_nr
   layers:
   - Default
   - TransparentFX
@@ -14,7 +15,7 @@ TagManager:
   - UI
   - collisionstuff
   - player
-  - 
+  - Inventory
   - 
   - 
   - 
@@ -50,4 +51,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1026641825
+    locked: 0
+  - name: Inventory
+    uniqueID: 2321064645
     locked: 0

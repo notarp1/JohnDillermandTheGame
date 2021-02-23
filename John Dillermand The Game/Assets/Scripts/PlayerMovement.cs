@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,10 @@ public class PlayerMovement : MonoBehaviour
     float y = 0f;
     private float addX = 0f;
     private float addY = 0f;
+    public bool facingRight = true; //Depends on if your animation is by default facing right or left
+    float speed = 5f;
+    public String rotation;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,37 +34,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void movePlayer()
     {
-        Debug.Log(rigidbody.position.x + "\t" + rigidbody.position.y);
+        //Debug.Log(rigidbody.position.x + "\t" + rigidbody.position.y);
         if (!Input.anyKey) {
             anim.Play("Idle");
         }
         if (Input.GetKey("d"))
         {
-            anim.Play("PlayerAnimation");
+            anim.Play("JohnAnimation");
             x = x + 0.005f;
             //player.transform.position = new Vector3(x, y, -0.01f);
-            addX += 5f;
+            addX += speed;
+            rotation = "r";
         }
         if (Input.GetKey("a"))
         {
-            anim.Play("PlayerAnimation");
+            FixedUpdate();
+            anim.Play("JohnAnimation");
             x = x - 0.005f;
             //player.transform.position = new Vector3(x, y, -0.01f);
-            addX -= 5f;
+            addX -= speed;
+            rotation = "l";
         }
         if (Input.GetKey("w"))
         {
-            anim.Play("PlayerAnimation");
+            anim.Play("JohnAnimation");
             y = y + 0.005f;
             //player.transform.position = new Vector3(x, y, -0.01f);
-            addY += 5f;
+            addY += speed;
+            rotation = "u";
         }
         if (Input.GetKey("s"))
         {
-            anim.Play("PlayerAnimation");
+            anim.Play("JohnAnimation");
             y = y - 0.005f;
             //player.transform.position = new Vector3(x, y, -0.01f);
-            addY -= 5f;
+            addY -= speed;
+            rotation = "d";
         }
         rigidbody.MovePosition(rigidbody.position + new Vector2(addX, addY) * Time.fixedDeltaTime);
         addX = 0f;
@@ -91,4 +101,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
+    }
+
+    void FixedUpdate()
+    {
+        float h = Input.GetAxis("Horizontal");
+        if (h > 0 && !facingRight)
+            Flip();
+        else if (h < 0 && facingRight)
+            Flip();
+    }
+
 }
