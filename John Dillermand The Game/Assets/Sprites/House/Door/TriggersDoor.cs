@@ -30,7 +30,7 @@ public class TriggersDoor : MonoBehaviour
         {
             //db.setLayer(1);
             db.setDoorClosed();
-            player.GetComponent<SpriteRenderer>().sortingOrder = 2;
+            player.GetComponent<SpriteRenderer>().sortingOrder = 3;
 
             db.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);
             roof.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 1f);

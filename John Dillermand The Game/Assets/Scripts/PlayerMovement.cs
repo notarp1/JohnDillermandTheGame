@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     OnTrigger2D refScript;
     private float addX = 0f;
     private float addY = 0f;
+    public bool facingRight = true; //Depends on if your animation is by default facing right or left
 
 
     // Start is called before the first frame update
@@ -36,12 +37,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movePlayer();
+        
        
     
     }
+    private void FixedUpdate()
+    {
+        movePlayer();
 
-  
+        float h = Input.GetAxis("Horizontal");
+        if (h > 0 && !facingRight)
+            Flip();
+        else if (h < 0 && facingRight)
+            Flip();
+    }
+
+
 
 
     private void movePlayer()
@@ -51,14 +62,14 @@ public class PlayerMovement : MonoBehaviour
         {
 
             EnableHitbox("up");
-            anim.Play("PlayerAnimation");
+            anim.Play("JohnAnimation");
             addY += speed;
 
         }
         if (Input.GetKey(KeyCode.A))
         {
             EnableHitbox("left");
-            anim.Play("PlayerAnimation");
+            anim.Play("JohnAnimation");
             addX -= speed;
            // Vector3 move = new Vector3(-speed * Time.deltaTime, 0, 0);
            // transform.position += move;
@@ -66,14 +77,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             EnableHitbox("right");
-            anim.Play("PlayerAnimation");
+            anim.Play("JohnAnimation");
             addX += speed;
         }
         if (Input.GetKey(KeyCode.S))
         {
     
             EnableHitbox("down");
-            anim.Play("PlayerAnimation");
+            anim.Play("JohnAnimation");
             addY -= speed;
         }
 
@@ -123,5 +134,13 @@ public class PlayerMovement : MonoBehaviour
         }
        
         
+    }
+
+    void Flip()
+    {
+        facingRight = !facingRight;
+        Vector3 theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Hitbox
   - wall
   - roof
+  - projectile
+  - enemy
   layers:
   - Default
   - TransparentFX
