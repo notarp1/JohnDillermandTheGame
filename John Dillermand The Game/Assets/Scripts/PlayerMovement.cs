@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     OnTrigger2D refScript;
     private float addX = 0f;
     private float addY = 0f;
+    public string rotation;
     public bool facingRight = true; //Depends on if your animation is by default facing right or left
 
 

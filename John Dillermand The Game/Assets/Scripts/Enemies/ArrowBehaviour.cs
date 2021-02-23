@@ -8,6 +8,8 @@ public class ArrowBehaviour : MonoBehaviour
     Rigidbody2D rb;
     float timer = 0;
     float timerThreshold = 1f;
+    PlayerAttributes pa;
+
 
 
     // Start is called before the first frame update
@@ -16,7 +18,7 @@ public class ArrowBehaviour : MonoBehaviour
         target = GameObject.Find("Player");
         rb = GetComponent<Rigidbody2D>();
         arrow = this.gameObject;
-
+        pa = target.GetComponent<PlayerAttributes>();
         float posX = GetComponentInParent<Transform>().position.x;
         float posY = GetComponentInParent<Transform>().position.y;
         float posXplayer = target.GetComponent<Transform>().position.x;
@@ -75,6 +77,7 @@ public class ArrowBehaviour : MonoBehaviour
     {
         if (collision.name == "DamageHitbox")
         {
+            pa.setPlayerHealth(pa.getPlayerHealth() - 10);
             Destroy(arrow);
         }
         else if(collision.tag != "enemy") Destroy(arrow);
