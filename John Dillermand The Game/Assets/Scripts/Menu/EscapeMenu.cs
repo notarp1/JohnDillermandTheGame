@@ -8,6 +8,7 @@ public class EscapeMenu : MonoBehaviour
     public GameObject player;
     public PlayerAttributes playerAttr;
     public PlayerInventory playerInven;
+    public QuestGiver questGiver;
 
     public void continueButton()
     {
@@ -18,7 +19,7 @@ public class EscapeMenu : MonoBehaviour
     public void saveButton()
     {
         SaveSystem.savePlayer(playerAttr, playerInven, player);
-        SaveSystem.savePlayerQuests(playerAttr);
+        SaveSystem.savePlayerQuests(playerAttr, questGiver.questsToGive);
     }
 
     public void loadButton()

@@ -7,7 +7,7 @@ using Random = System.Random;
 
 public class QuestGiver : MonoBehaviour
 {
-    private List<Quest> questsToGive = new List<Quest>();
+    public List<Quest> questsToGive = new List<Quest>();
     private bool isReadyToGiveQuest = true;
     private bool playerIsInRange = false;
     public PlayerAttributes attr;
@@ -96,6 +96,15 @@ public class QuestGiver : MonoBehaviour
         if (collider.tag.Equals("Player"))
         {
             playerIsInRange = false;
+        }
+    }
+
+    public void setQuests(List<Quest> newQuests)
+    {
+        this.questsToGive = newQuests;
+        if (attr.activeQuests.Count != 5 && questsToGive.Count > 0)
+        {
+            setIsReadyToGiveQuest(true);
         }
     }
 
