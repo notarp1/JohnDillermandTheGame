@@ -44,7 +44,7 @@ public class PlayerInventory : MonoBehaviour
 
     public Item[] getItems()
     {
-        return this.items;
+        return this.items == null ? new Item[10] : this.items;
     }
 
     public void setItems(Item[] items)

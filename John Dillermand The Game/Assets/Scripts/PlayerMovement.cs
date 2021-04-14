@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (behindObject) player.GetComponent<SpriteRenderer>().sortingOrder = 3;
-        else player.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        if (behindObject) player.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        else player.GetComponent<SpriteRenderer>().sortingOrder = 2;
 
 
 
