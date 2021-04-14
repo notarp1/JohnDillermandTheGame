@@ -85,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
         {
     
             EnableHitbox("down");
-            anim.Play("JohnAnimation");
+            anim.Play("JohnWalkingFront");
             addY -= speed;
         }
 
@@ -102,9 +102,7 @@ public class PlayerMovement : MonoBehaviour
             left.SetActive(true);
             right.SetActive(false);
             down.SetActive(false);
-            up.SetActive(false);
-                
-
+            up.SetActive(false);    
         }
         else if (name == "right")
         {
@@ -133,8 +131,9 @@ public class PlayerMovement : MonoBehaviour
             up.SetActive(false);
 
         }
-       
-        
+
+        this.rotation = name;
+
     }
 
     void Flip()
@@ -144,4 +143,11 @@ public class PlayerMovement : MonoBehaviour
         theScale.x *= -1;
         transform.localScale = theScale;
     }
+
+    public string getHitBox()
+    {
+        return this.rotation;
+    }
+
+
 }

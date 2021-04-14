@@ -31,9 +31,9 @@ public class ArrowBehaviour : MonoBehaviour
         float c = Mathf.Sqrt(z);
 
 
-        Debug.Log("A = " + a);
-        Debug.Log("B = " + b);
-        Debug.Log("C = " + c);
+        //Debug.Log("A = " + a);
+        //Debug.Log("B = " + b);
+        //Debug.Log("C = " + c);
    
 
         float vinkel = ((b * b) + (c * c) - (a * a));
@@ -42,8 +42,7 @@ public class ArrowBehaviour : MonoBehaviour
         float rad = Mathf.Acos(result);
         float deg = rad * Mathf.Rad2Deg;
 
-        Debug.Log("Vinkel = " +
-            deg);
+        //Debug.Log("Vinkel = " + deg);
        
             if (posYplayer > posY) transform.Rotate(0, 0, deg);
             else transform.Rotate(0, 0, -deg);
@@ -77,10 +76,10 @@ public class ArrowBehaviour : MonoBehaviour
     {
         if (collision.name == "DamageHitbox")
         {
-            pa.setPlayerHealth(pa.getPlayerHealth() - 10);
+            pa.dealDamage(10);
             Destroy(arrow);
         }
-        else if(collision.tag != "enemy") Destroy(arrow);
+        else if(collision.tag != "enemy" && collision.tag != "weaponRange") Destroy(arrow);
     }
 
 

@@ -52,19 +52,29 @@ public class ChestBehaviour : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        isOpened = false;
+        if (other.tag.Equals("Player"))
+        {
+            isOpened = false;
+        }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        isOnCollider = true;
-
+        if (other.tag.Equals("Player"))
+        {
+            Debug.Log("Player at chest");
+            isOnCollider = true;
+        }
 
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        setChestClosed();
-        isOnCollider = false;
+        if (other.tag.Equals("Player"))
+        {
+            Debug.Log("Player left chest");
+            setChestClosed();
+            isOnCollider = false;
+        }
     }
 }
