@@ -7,6 +7,8 @@ public class TriggersDoor : MonoBehaviour
     GameObject door, player, roof;
     GameObject [] wall;
     DoorBehaviour db;
+
+    public PlayerAttributes attr;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +28,9 @@ public class TriggersDoor : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (this.name == "HBDoorFront" && other.tag == "Player")
+        if (this.name == "HBDoorFront" && other.tag.Equals("Player"))
         {
+            Debug.Log("Player at front door");
             //db.setLayer(1);
             db.setDoorClosed();
             player.GetComponent<SpriteRenderer>().sortingOrder = 3;
@@ -40,8 +43,8 @@ public class TriggersDoor : MonoBehaviour
         
             }
         }
-        else if (this.name == "HBDoorBack" && other.tag == "Player") {
-
+        else if (this.name == "HBDoorBack" && other.tag.Equals("Player")) {
+            Debug.Log("Player at back door");
             player.GetComponent<SpriteRenderer>().sortingOrder = 0;
             db.setDoorClosed();
             db.isOnCollider = false;
@@ -52,7 +55,7 @@ public class TriggersDoor : MonoBehaviour
                
                 obWall.GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, .7f);
             }
-            
+            attr.checkQuests(objectsInQuest.johnHouse, objectives.gotolocation, 1);
         } 
     }
 }

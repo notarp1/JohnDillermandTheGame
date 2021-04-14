@@ -6,13 +6,11 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    private Slider healthBar;
+    public Slider healthBar;
     // Start is called before the first frame update
     void Start()
     {
-        healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         healthBar.maxValue = 100;
-        healthBar.value = healthBar.maxValue;
     }
 
     // Update is called once per frame
@@ -23,6 +21,7 @@ public class HealthBar : MonoBehaviour
 
     public void setHealthBar(int healthValue)
     {
+        healthBar.maxValue = 100;
         healthBar.value = healthValue;
         GameObject.Find("HealthBarAmountText").GetComponent<TextMeshProUGUI>().SetText(healthBar.value+"");
     }

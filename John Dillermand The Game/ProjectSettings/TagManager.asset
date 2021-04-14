@@ -11,6 +11,9 @@ TagManager:
   - projectile
   - slot_nr
   - behind
+  - weaponRange
+  - groundItem
+  - Quest
   layers:
   - Default
   - TransparentFX

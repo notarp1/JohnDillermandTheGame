@@ -40,7 +40,7 @@ public class OnTrigger2D : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(this.gameObject.name + " Collider med: " + other.name);
+        //Debug.Log(this.gameObject.name + " Collider med: " + other.name);
 
     }
     void OnTriggerStay2D(Collider2D other)

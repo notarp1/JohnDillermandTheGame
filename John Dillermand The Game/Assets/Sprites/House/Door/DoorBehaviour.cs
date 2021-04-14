@@ -53,18 +53,31 @@ public class DoorBehaviour : MonoBehaviour
         GetComponent<BoxCollider2D>().isTrigger = false;
     }
     void OnTriggerEnter2D(Collider2D other)
-    {    
-        isOpened = false;                   
+    {
+        if (other.tag.Equals("Player"))
+        {
+            isOpened = false;
+        }
+        
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-       isOnCollider = true;              
+        if (other.tag.Equals("Player"))
+        {
+            isOnCollider = true;
+        }
+
+
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        isOnCollider = false;     
+        if (other.tag.Equals("Player"))
+        {
+            isOnCollider = false;
+        }
+
     }
 
 }
