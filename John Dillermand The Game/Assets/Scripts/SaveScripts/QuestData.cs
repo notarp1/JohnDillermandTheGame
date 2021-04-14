@@ -14,8 +14,15 @@ public class QuestData
     public int[] amountLeft;
     public int[] startValues;
 
+    public string[] questTitlesGiver;
+    public objectives[] objetivesGiver;
+    public objectsInQuest[] objectsGiver;
+    public rewards[] rewardsGiver;
+    public int[] rewardAmountGiver;
+    public int[] amountLeftGiver;
+    public int[] startValuesGiver;
 
-    public QuestData(List<Quest> questsToSave)
+    public QuestData(List<Quest> questsToSave, List<Quest> questsToSaveGiver)
     {
         questTitles = new string[questsToSave.Count];
         objetives = new objectives[questsToSave.Count];
@@ -24,6 +31,16 @@ public class QuestData
         rewardAmount = new int[questsToSave.Count];
         amountLeft = new int[questsToSave.Count];
         startValues = new int[questsToSave.Count];
+
+        questTitlesGiver = new string[questsToSave.Count];
+        objetivesGiver = new objectives[questsToSave.Count];
+        objectsGiver = new objectsInQuest[questsToSave.Count];
+        rewardsGiver = new rewards[questsToSave.Count];
+        rewardAmountGiver = new int[questsToSave.Count];
+        amountLeftGiver = new int[questsToSave.Count];
+        startValuesGiver = new int[questsToSave.Count];
+
+
         for (int i = 0; i < questsToSave.Count; i++)
         {
             questTitles[i] = questsToSave[i].getTitle();
@@ -33,6 +50,14 @@ public class QuestData
             rewardAmount[i] = questsToSave[i].getRewardAmount();
             amountLeft[i] = questsToSave[i].getAmountLeft();
             startValues[i] = questsToSave[i].getStartValue();
+
+            questTitlesGiver[i] = questsToSaveGiver[i].getTitle();
+            objetivesGiver[i] = questsToSaveGiver[i].getObjective();
+            objectsGiver[i] = questsToSaveGiver[i].getObjectInQuest();
+            rewardsGiver[i] = questsToSaveGiver[i].getReward();
+            rewardAmountGiver[i] = questsToSaveGiver[i].getRewardAmount();
+            amountLeftGiver[i] = questsToSaveGiver[i].getAmountLeft();
+            startValuesGiver[i] = questsToSaveGiver[i].getStartValue();
         }
     }
 

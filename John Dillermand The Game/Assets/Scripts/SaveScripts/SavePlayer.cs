@@ -21,13 +21,13 @@ public static class SaveSystem
 
     }
 
-    public static void savePlayerQuests(PlayerAttributes playerAttr)
+    public static void savePlayerQuests(PlayerAttributes playerAttr, List<Quest> questGiverQuests)
     {
         BinaryFormatter bin = new BinaryFormatter();
         string currentPath = path + "/quests.bin";
         FileStream stream = new FileStream(currentPath, FileMode.Create);
 
-        QuestData data = new QuestData(playerAttr.activeQuests);
+        QuestData data = new QuestData(playerAttr.activeQuests, questGiverQuests);
 
         bin.Serialize(stream, data);
         stream.Close();
