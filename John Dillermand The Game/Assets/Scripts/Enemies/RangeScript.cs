@@ -6,15 +6,18 @@ public class RangeScript : MonoBehaviour
 {
 
     public GameObject arrow;
+    private GameObject player;
     bool isOnTrigger = false;
  
     float timer = 0;
     float timerThreshold = 0.5f;
+    private float speed = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player");
+
     }
 
     // Update is called once per frame
@@ -22,21 +25,23 @@ public class RangeScript : MonoBehaviour
     {
 
         if (isOnTrigger) {   
+            
             timer += Time.deltaTime;
-
            
+
         }
         if (timer > timerThreshold)
         {
-          
+
             timer = 0;
-          
+
             float posX = GetComponentInParent<Transform>().position.x;
             float posY = GetComponentInParent<Transform>().position.y;
             Instantiate(arrow, new Vector2(posX, posY), Quaternion.identity);
- 
+
 
         }
+       
         
         
     }

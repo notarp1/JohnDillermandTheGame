@@ -7,11 +7,13 @@ public class PlayerMovement : MonoBehaviour
     private GameObject player, up, down, left, right;
     private Animator anim;
     private Rigidbody2D rb;
+    private BoxCollider2D col;
     public float speed;
     OnTrigger2D refScript;
     private float addX = 0f;
     private float addY = 0f;
     public string rotation;
+    private bool behindObject = false;
     public bool facingRight = true; //Depends on if your animation is by default facing right or left
 
 
@@ -26,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
         left = GameObject.Find("HitboxLeft");
         right = GameObject.Find("HitboxRight");
         rb = player.GetComponent<Rigidbody2D>();
-
+        col = player.GetComponent<BoxCollider2D>();
         up.SetActive(false);
         down.SetActive(false);
         left.SetActive(false);
@@ -38,9 +40,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-       
-    
+        if (behindObject) player.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        else player.GetComponent<SpriteRenderer>().sortingOrder = 4;
+
+
+
+
     }
     private void FixedUpdate()
     {
@@ -54,9 +59,25 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "behind" && col.IsTouching(collision))
+        {
+       
+            behindObject = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "behind")
+        {
+           
+            behindObject = false;
+        }
+    }
 
 
-    private void movePlayer()
+        private void movePlayer()
     {
         if (!Input.anyKey) anim.Play("Idle");
         if (Input.GetKey(KeyCode.W))

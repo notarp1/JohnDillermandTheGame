@@ -53,21 +53,18 @@ public class DoorBehaviour : MonoBehaviour
         GetComponent<BoxCollider2D>().isTrigger = false;
     }
     void OnTriggerEnter2D(Collider2D other)
-    {
-        isOpened = false;
+    {    
+        isOpened = false;                   
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        isOnCollider = true;
-          
-
+       isOnCollider = true;              
     }
 
     void OnTriggerExit2D(Collider2D other)
     {
-        isOnCollider = false;
-
+        isOnCollider = false;     
     }
 
 }

@@ -26,7 +26,7 @@ public class TriggersDoor : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (this.name == "HBDoorFront")
+        if (this.name == "HBDoorFront" && other.tag == "Player")
         {
             //db.setLayer(1);
             db.setDoorClosed();
@@ -40,7 +40,7 @@ public class TriggersDoor : MonoBehaviour
         
             }
         }
-        else if (this.name == "HBDoorBack") {
+        else if (this.name == "HBDoorBack" && other.tag == "Player") {
 
             player.GetComponent<SpriteRenderer>().sortingOrder = 0;
             db.setDoorClosed();

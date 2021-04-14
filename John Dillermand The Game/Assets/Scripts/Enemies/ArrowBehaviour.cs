@@ -7,7 +7,8 @@ public class ArrowBehaviour : MonoBehaviour
     GameObject target, arrow;
     Rigidbody2D rb;
     float timer = 0;
-    float timerThreshold = 1f;
+    float timerThreshold = 2f;
+
     PlayerAttributes pa;
 
 
@@ -62,25 +63,35 @@ public class ArrowBehaviour : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+   
+       
+
         if (timer > timerThreshold) {
             Destroy(arrow);
         }
+
     }
 
     private void FixedUpdate()
     {
-
+       
         rb.AddForce(transform.right * 35f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name == "DamageHitbox")
+       if (collision.name == "DamageHitbox")
         {
             pa.setPlayerHealth(pa.getPlayerHealth() - 10);
             Destroy(arrow);
         }
-        else if(collision.tag != "enemy") Destroy(arrow);
+        else if (collision.tag != "enemy") Destroy(arrow);
+
+        /*if (collision.tag == "enemy")
+        {
+            Physics2D.IgnoreCollision(collision.GetComponent<BoxCollider2D>(), this.GetComponent<BoxCollider2D>());
+        } */
+        
     }
 
 
