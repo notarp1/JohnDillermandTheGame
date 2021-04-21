@@ -50,7 +50,10 @@ public class QuestData
             rewardAmount[i] = questsToSave[i].getRewardAmount();
             amountLeft[i] = questsToSave[i].getAmountLeft();
             startValues[i] = questsToSave[i].getStartValue();
+        }
 
+        for (int i = 0; i < questsToSaveGiver.Count; i++)
+        {
             questTitlesGiver[i] = questsToSaveGiver[i].getTitle();
             objetivesGiver[i] = questsToSaveGiver[i].getObjective();
             objectsGiver[i] = questsToSaveGiver[i].getObjectInQuest();

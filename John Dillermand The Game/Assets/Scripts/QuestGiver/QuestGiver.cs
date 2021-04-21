@@ -11,11 +11,15 @@ public class QuestGiver : MonoBehaviour
     private bool isReadyToGiveQuest = true;
     private bool playerIsInRange = false;
     public PlayerAttributes attr;
+    public bool isInitialized = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        initializeQuests();
+        if (!isInitialized)
+        {
+            initializeQuests();
+        }
     }
 
     // Update is called once per frame
@@ -105,7 +109,7 @@ public class QuestGiver : MonoBehaviour
         if (attr.activeQuests.Count != 5 && questsToGive.Count > 0)
         {
             setIsReadyToGiveQuest(true);
-        }
+        } else setIsReadyToGiveQuest(false);
     }
 
 
