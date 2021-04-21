@@ -45,6 +45,10 @@ public class HotbarItemUser : MonoBehaviour
                     this.transform.GetChild(0).GetComponent<Image>().sprite =
                         Resources.Load("MoneyBags", typeof(Sprite)) as Sprite;
                     break;
+                case "Hoe":
+                    this.transform.GetChild(0).GetComponent<Image>().sprite =
+                        Resources.Load("Hoe", typeof(Sprite)) as Sprite;
+                    break;
             } 
         } else removeItem();
         this.currentItem = item;
@@ -72,6 +76,12 @@ public class HotbarItemUser : MonoBehaviour
                     itemCanBeUsed = false;
                     anim = GameObject.Find("Sword").GetComponent<Animator>();
                     ((Weapon) currentItem).useItem(currentItem, anim);
+                    itemCanBeUsed = true;
+                    break;
+                case itemTypes.Tool:
+                    itemCanBeUsed = false;
+                    anim = GameObject.Find("Sword").GetComponent<Animator>();
+                    ((Tool)currentItem).useItem(currentItem, anim);
                     itemCanBeUsed = true;
                     break;
                 case itemTypes.HealItem:

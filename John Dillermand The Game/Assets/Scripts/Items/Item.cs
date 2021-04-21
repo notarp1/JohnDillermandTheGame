@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum itemTypes
 {
-    HealItem, Weapon, Coin
+    HealItem, Weapon, Coin, Tool
 }
 public interface Item
 {

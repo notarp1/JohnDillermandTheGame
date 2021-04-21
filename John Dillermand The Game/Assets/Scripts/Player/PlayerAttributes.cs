@@ -171,6 +171,16 @@ public class PlayerAttributes : MonoBehaviour
 
     public void setQuests(List<Quest> newQuests)
     {
+        for (int i = 0; i < activeQuests.Count; i++)
+        {
+            questUIBox.transform.GetChild(i).gameObject.GetComponent<UIQuest>().setQuest(null);
+        }
+
+        activeQuests = newQuests;
+        for (int i = 0; i < newQuests.Count; i++)
+        {
+            questUIBox.transform.GetChild(i).gameObject.GetComponent<UIQuest>().setQuest(newQuests[i]);
+        }
 
     }
 

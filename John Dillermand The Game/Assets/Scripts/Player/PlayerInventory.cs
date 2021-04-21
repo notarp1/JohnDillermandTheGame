@@ -23,6 +23,7 @@ public class PlayerInventory : MonoBehaviour
             items = new Item[10];
             items[0] = new Weapon("Sword", 1, itemTypes.Weapon, 20, 0.5f, 2);
             items[1] = new HealItem("Potion", 30, itemTypes.HealItem, 10);
+            items[2] = new Tool("Hoe", 1, itemTypes.Tool, 1);
             //items[2] = new HealItem("Poison", 30, "HealItem", -5);
             setCoins(0);
             hotbar_hotbar = GameObject.Find("Hotbar_hotbar");

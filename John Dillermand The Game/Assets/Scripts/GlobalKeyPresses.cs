@@ -135,9 +135,9 @@ public class GlobalKeyPresses : MonoBehaviour
         {
             int inventoryItemNr = hotbarChooser.getChildNumber();
             inventoryItemNr++;
-            if (inventoryItemNr < 0 || inventoryItemNr == -1)
+            if (inventoryItemNr > 9 || inventoryItemNr == -1)
             {
-                inventoryItemNr = 9;
+                inventoryItemNr = 0;
             }
             hotbarChooser.setChildNumber(inventoryItemNr);
         }

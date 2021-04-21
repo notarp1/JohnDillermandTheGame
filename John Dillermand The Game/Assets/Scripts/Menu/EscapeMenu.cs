@@ -8,6 +8,7 @@ public class EscapeMenu : MonoBehaviour
     public GameObject player;
     public PlayerAttributes playerAttr;
     public PlayerInventory playerInven;
+    public QuestGiver questGiver;
 
     public void continueButton()
     {
@@ -18,7 +19,7 @@ public class EscapeMenu : MonoBehaviour
     public void saveButton()
     {
         SaveSystem.savePlayer(playerAttr, playerInven, player);
-        SaveSystem.savePlayerQuests(playerAttr);
+        SaveSystem.savePlayerQuests(playerAttr, questGiver.questsToGive);
     }
 
     public void loadButton()
@@ -53,12 +54,27 @@ public class EscapeMenu : MonoBehaviour
         
         if (questData != null)
         {
-            List<Quest> quests = new List<Quest>();
-            for (int i = 0; i < questData.questTitles.Length; i++)
+            if (questData.questTitles.Length != 0)
             {
-                quests.Add(new Quest(questData.objects[i], questData.startValues[i], questData.amountLeft[i], questData.questTitles[i], questData.objetives[i], questData.rewards[i], questData.rewardAmount[i]));
+                List<Quest> quests = new List<Quest>();
+                for (int i = 0; i < questData.questTitles.Length; i++)
+                {
+                    quests.Add(new Quest(questData.objects[i], questData.startValues[i], questData.amountLeft[i], questData.questTitles[i], questData.objetives[i], questData.rewards[i], questData.rewardAmount[i]));
+                }
+                playerAttr.setQuests(quests);
             }
-            playerAttr.setQuests(quests);
+
+            if (questData.questTitlesGiver.Length != 0)
+            {
+                List<Quest> giversQuests = new List<Quest>();
+                for (int i = 0; i < questData.questTitlesGiver.Length; i++)
+                {
+                    giversQuests.Add(new Quest(questData.objectsGiver[i], questData.startValuesGiver[i], questData.amountLeftGiver[i], questData.questTitlesGiver[i], questData.objetivesGiver[i], questData.rewardsGiver[i], questData.rewardAmountGiver[i]));
+                }
+
+                questGiver.isInitialized = true;
+                questGiver.setQuests(giversQuests);
+            }
         }
         else Debug.Log("NO QUESTS FOUND");
     }
