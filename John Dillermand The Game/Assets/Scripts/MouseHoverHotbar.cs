@@ -46,6 +46,15 @@ public class MouseHoverHotbar : MonoBehaviour, IPointerEnterHandler, IPointerExi
                                    ((HealItem)item).getHealingAmount() + "\nAmount left: " +
                                    ((HealItem)item).getItemAmount();
                     break;
+                case itemTypes.Tool:
+                    textToInsert = "Item: " + ((Tool) item).getItemName() + "\nStamina usage: " +
+                                   ((Tool) item).getStaminaAmount();
+                    break;
+                case itemTypes.Seed:
+                    textToInsert = "Item: " + ((Seed)item).getItemName() + "\nAmount left: " +
+                                   ((Seed)item).getItemAmount();
+                    break;
+
             }
             text.SetText(textToInsert);
         }

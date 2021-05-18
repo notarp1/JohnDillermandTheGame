@@ -59,10 +59,11 @@ public class Tool : Item
 
     public void useItem(Item item, Animator anim)
     {
-        if (GameObject.Find("Player").GetComponent<PlayerAttributes>().getStaminaAmount() != 0 ) // check også for at der kan farmes på det tile
+        PlayerAttributes attr = GameObject.Find("Player").GetComponent<PlayerAttributes>();
+
+        if (attr.getStaminaAmount() != 0) // check også for at der kan farmes på det tile
         {
-            GameObject.Find("Player").GetComponent<PlayerAttributes>().useStamina(((Tool)item).getStaminaAmount());
-            
+            attr.useStamina(((Tool)item).getStaminaAmount());
 
         }
         else

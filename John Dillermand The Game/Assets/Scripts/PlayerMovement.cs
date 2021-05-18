@@ -84,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
         {
 
             EnableHitbox("up");
-            anim.Play("JohnAnimation");
+            anim.Play("JohnWalkingBack");
             addY += speed;
 
         }

@@ -3,11 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum healingType
-{
-    potion, poison
-}
-
 public class HealItem : Item
 {
     private string itemName;
@@ -77,11 +72,14 @@ public class HealItem : Item
                     Item[] items = playerInventory.getItems();
                     for (int i = 0; i < items.Length; i++)
                     {
-                        if (items[i].getItemName().Equals(item.getItemName()))
+                        if (items[i] != null)
                         {
-                            playerAttribute.healPlayer(((HealItem) item).getHealingAmount());
-                            items[i].setItemAmount(item.getItemAmount() - 1);
-                            break;
+                            if (items[i].getItemName().Equals(item.getItemName()))
+                            {
+                                playerAttribute.healPlayer(((HealItem) item).getHealingAmount());
+                                items[i].setItemAmount(item.getItemAmount() - 1);
+                                break;
+                            }
                         }
                     }
 

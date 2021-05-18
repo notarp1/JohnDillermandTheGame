@@ -78,7 +78,6 @@ public class EscapeMenu : MonoBehaviour
         }
         else Debug.Log("NO QUESTS FOUND");
     }
-
     public void quitButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

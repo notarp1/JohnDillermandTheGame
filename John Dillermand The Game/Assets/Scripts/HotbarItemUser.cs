@@ -7,7 +7,7 @@ public class HotbarItemUser : MonoBehaviour
 {
     private Item currentItem = null;
 
-    private Animator anim;
+    public Animator anim;
     private bool itemCanBeUsed = true;
 
     // Start is called before the first frame update
@@ -49,6 +49,11 @@ public class HotbarItemUser : MonoBehaviour
                     this.transform.GetChild(0).GetComponent<Image>().sprite =
                         Resources.Load("Hoe", typeof(Sprite)) as Sprite;
                     break;
+                case "Sunflower Seed":
+                    this.transform.GetChild(0).GetComponent<Image>().sprite =
+                        Resources.Load("Sunflower", typeof(Sprite)) as Sprite;
+                    break;
+
             } 
         } else removeItem();
         this.currentItem = item;
@@ -74,13 +79,11 @@ public class HotbarItemUser : MonoBehaviour
             {
                 case itemTypes.Weapon:
                     itemCanBeUsed = false;
-                    anim = GameObject.Find("Sword").GetComponent<Animator>();
                     ((Weapon) currentItem).useItem(currentItem, anim);
                     itemCanBeUsed = true;
                     break;
                 case itemTypes.Tool:
                     itemCanBeUsed = false;
-                    anim = GameObject.Find("Sword").GetComponent<Animator>();
                     ((Tool)currentItem).useItem(currentItem, anim);
                     itemCanBeUsed = true;
                     break;
@@ -92,8 +95,12 @@ public class HotbarItemUser : MonoBehaviour
                     break;
                 case itemTypes.Coin:
                     itemCanBeUsed = false;
-                    anim = GameObject.Find("Sword").GetComponent<Animator>();
                     ((Money)currentItem).useItem(currentItem, anim);
+                    itemCanBeUsed = true;
+                    break;
+                case itemTypes.Seed:
+                    itemCanBeUsed = false;
+                    ((Seed)currentItem).useItem(currentItem, anim);
                     itemCanBeUsed = true;
                     break;
             }

@@ -86,25 +86,6 @@ public class Weapon : Item
         if (GameObject.Find("Player").GetComponent<PlayerAttributes>().getStaminaAmount() != 0)
         {
             GameObject sword = GameObject.Find("Sword");
-            string rotation = GameObject.Find("Player").GetComponent<PlayerMovement>().getHitBox();
-            switch (rotation)
-            {
-                case "right":
-                    sword.transform.Rotate(0, 0, 0);
-                    break;
-                case "left":
-                    sword.transform.Rotate(0, 0, 180);
-                    break;
-                case "up":
-                    sword.transform.Rotate(0, 0, 90);
-                    break;
-                case "down":
-                    sword.transform.Rotate(0, 0, 270);
-                    break;
-                default:
-                    sword.transform.Rotate(0, 0, 0);
-                    break;
-            }
             anim.Play("SwordAnimation");
             GameObject.Find("Player").GetComponent<PlayerAttributes>().useStamina(((Weapon)item).getStaminaAmount());
             List<GameObject> enemyList = GameObject.Find("WeaponRange").GetComponent<WeaponRange>().getAllEnemiesInRange();

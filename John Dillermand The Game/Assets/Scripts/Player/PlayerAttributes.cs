@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using Random = System.Random;
 
 public class PlayerAttributes : MonoBehaviour
 {
@@ -17,6 +19,12 @@ public class PlayerAttributes : MonoBehaviour
     private bool isDead = false;
 
     public List<Quest> activeQuests = new List<Quest>();
+    public PlayerInventory playerInven;
+    public ParticleSystem hitParticle;
+    public GameObject lootPrefab;
+    public GameObject player;
+    public GameObject textShower;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +40,7 @@ public class PlayerAttributes : MonoBehaviour
             }
         }
         isDead = false;
-        audioSource = GameObject.Find("Player").GetComponent<AudioSource>();
+        audioSource = player.GetComponent<AudioSource>();
     }
 
     public void setPlayerHealth(int playerHealth)
@@ -48,32 +56,65 @@ public class PlayerAttributes : MonoBehaviour
 
     public void dealDamage(int damage)
     {
-        if (soundCanBePlayed)
+        if (gameObject != null)
         {
-            if (playerHealth - damage > 0)
+            if (soundCanBePlayed)
             {
-                soundCanBePlayed = false;
-                audioSource.volume = 0.6f;
-                audioSource.clip = damageSound;
-                audioSource.Play();
-                StartCoroutine(soundIsPlayable(audioSource.clip));
+                if (playerHealth - damage > 0)
+                {
+                    soundCanBePlayed = false;
+                    audioSource.volume = 0.6f;
+                    audioSource.clip = damageSound;
+                    //audioSource.Play();
+                    StartCoroutine(soundIsPlayable(audioSource.clip));
+                }
+                else
+                {
+                    soundCanBePlayed = false;
+                    audioSource.volume = 0.8f;
+                    audioSource.clip = deathSound;
+                    //audioSource.Play();
+                    StartCoroutine(soundIsPlayable(audioSource.clip));
+                    killPlayer();
+                }
+
+                setPlayerHealth(Math.Max(playerHealth - damage, 0));
             }
-            else
-            {
-                soundCanBePlayed = false;
-                audioSource.volume = 0.8f;
-                audioSource.clip = deathSound;
-                audioSource.Play();
-                StartCoroutine(soundIsPlayable(audioSource.clip));
-                isDead = true;
-            }
-            setPlayerHealth(Math.Max(playerHealth - damage, 0));
         }
     }
 
     public void healPlayer(int healAmount)
     {
         setPlayerHealth(Math.Min(getPlayerHealth()+healAmount, 100));
+    }
+
+    private void killPlayer()
+    {
+        isDead = true;
+        ParticleSystem particle = Instantiate(hitParticle, transform.position, transform.rotation);
+        Random rand = new Random();
+        // remove all items from the inventory and make them grounditems
+        foreach (Item i in playerInven.getItems())
+        {
+            if (i != null)
+            {
+                var loot = (GameObject) Instantiate(lootPrefab,new Vector3(player.transform.position.x + rand.Next(-5, 5),player.transform.position.y + rand.Next(-5, 5), 0),
+                    Quaternion.identity);
+                loot.GetComponent<GroundItemInventory>().setItem(i);
+            }
+        }
+        playerInven.clearItems();
+        gameObject.transform.position = new Vector3(1.5f, 1.35f, 0f);
+        setPlayerHealth(100);
+        setStamina(100);
+        if (playerInven.getCoins() != 0)
+        {
+            playerInven.addMoney(-(playerInven.getCoins()/5));
+        }
+        isDead = false;
+        textShower.GetComponentInChildren<TextMeshProUGUI>().SetText("You died!\nAll your items have been dropped on the ground where you died!");
+        textShower.SetActive(true);
+        StartCoroutine(hideText());
     }
 
     public bool isPlayerDead()
@@ -108,7 +149,6 @@ public class PlayerAttributes : MonoBehaviour
         setStamina(Math.Max(getStaminaAmount()-amount,0));
         GameObject.Find("StaminaBar").GetComponent<StaminaBar>().setStaminaBar(playerStamina);
     }
-
 
     public void addQuest(Quest quest)
     {
@@ -182,6 +222,12 @@ public class PlayerAttributes : MonoBehaviour
             questUIBox.transform.GetChild(i).gameObject.GetComponent<UIQuest>().setQuest(newQuests[i]);
         }
 
+    }
+
+    private IEnumerator hideText()
+    {
+        yield return new WaitForSeconds(2);
+        textShower.SetActive(false);
     }
 
 }

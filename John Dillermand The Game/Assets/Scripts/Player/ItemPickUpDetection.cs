@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class ItemPickUpDetection : MonoBehaviour
 {
-    private GameObject player;
+    public GameObject player;
 
-    private PlayerInventory playerInventory;
-    // Start is called before the first frame update
+    public PlayerInventory playerInventory;
+    public PlayerAttributes playerAttributes;
+
+// Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        playerInventory = player.GetComponent<PlayerInventory>();
     }
 
     // Update is called once per frame
@@ -24,11 +24,27 @@ public class ItemPickUpDetection : MonoBehaviour
     // Hvis du går over nogle items på jorden
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        bool hasBeenAdded = false;
         if (collider.tag.Equals("groundItem"))
         {
+            bool hasBeenAdded = false;
             Item currentItem = collider.gameObject.GetComponent<GroundItemInventory>().getItem();
             Item[] items = playerInventory.getItems();
+
+            // check quests
+
+            switch (currentItem.getItemName())
+            {
+                case "Potion":
+                    playerAttributes.checkQuests(objectsInQuest.potion, objectives.pickup, currentItem.getItemAmount());
+                    break;
+                case "Poison":
+                    playerAttributes.checkQuests(objectsInQuest.poison, objectives.pickup, currentItem.getItemAmount());
+                    break;
+                default:
+                    // do nothing rn
+                    break;
+
+            }
 
             foreach (Item i in items)
             {
@@ -51,6 +67,7 @@ public class ItemPickUpDetection : MonoBehaviour
                 playerInventory.addItem(currentItem);
                 collider.gameObject.GetComponent<GroundItemInventory>().destroyItem();
             }
+
 
         }
     }

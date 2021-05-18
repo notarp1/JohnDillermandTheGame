@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ public class PlayerInventory : MonoBehaviour
     private GameObject player;
     private GameObject moneyBar;
     public bool isLoaded = false;
+    public HoverOverFarmTile hoverOverFarm;
 
     private GameObject hotbar_hotbar;
     // Start is called before the first frame update
@@ -24,7 +26,7 @@ public class PlayerInventory : MonoBehaviour
             items[0] = new Weapon("Sword", 1, itemTypes.Weapon, 20, 0.5f, 2);
             items[1] = new HealItem("Potion", 30, itemTypes.HealItem, 10);
             items[2] = new Tool("Hoe", 1, itemTypes.Tool, 1);
-            //items[2] = new HealItem("Poison", 30, "HealItem", -5);
+            items[3] = new Seed("Sunflower Seed", 10, itemTypes.Seed);
             setCoins(0);
             hotbar_hotbar = GameObject.Find("Hotbar_hotbar");
             for (int i = 0; i < items.Length; i++)
@@ -57,6 +59,10 @@ public class PlayerInventory : MonoBehaviour
             {
                 if (items[i].getItemAmount() == 0)
                 {
+                    if (items[i].getItemType() == itemTypes.Seed)
+                    {
+                        hoverOverFarm.isHoldingSeed = false;
+                    }
                     items[i] = null;
                     hotbar_hotbar.transform.GetChild(i).GetComponent<HotbarItemUser>().setItem(null);
                 }

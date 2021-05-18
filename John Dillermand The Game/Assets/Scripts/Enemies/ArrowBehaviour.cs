@@ -84,7 +84,7 @@ public class ArrowBehaviour : MonoBehaviour
             pa.dealDamage(10);
             Destroy(arrow);
         }
-        else if(collision.tag != "enemy" && collision.tag != "weaponRange") Destroy(arrow);
+        else if(collision.tag != "enemy" && collision.tag != "weaponRange" && collision.tag != "projectile") Destroy(arrow);
     }
 
 

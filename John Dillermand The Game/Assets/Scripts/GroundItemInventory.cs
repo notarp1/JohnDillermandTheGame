@@ -42,6 +42,18 @@ public class GroundItemInventory : MonoBehaviour
                         break;
                 }
                 break;
+            case itemTypes.Tool:
+                switch (item.getItemName())
+                {
+                    case "Hoe":
+                        gameObject.GetComponent<SpriteRenderer>().sprite =
+                            Resources.Load("Hoe", typeof(Sprite)) as Sprite;
+                        gameObject.transform.localScale = new Vector3(1, 1, 1);
+                        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
+                        break;
+                }
+
+                break;
 
             case itemTypes.Coin:
                 switch (item.getItemName())
@@ -54,6 +66,21 @@ public class GroundItemInventory : MonoBehaviour
                         gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
                         break;
                 }
+                break;
+
+            case itemTypes.Seed:
+                switch (item.getItemName())
+                {
+                    case "Sunflower Seed":
+                        gameObject.GetComponent<SpriteRenderer>().sprite =
+                            Resources.Load("sunflower", typeof(Sprite)) as Sprite;
+                        gameObject.transform.localScale = new Vector3(1, 1, 1);
+                        gameObject.GetComponent<BoxCollider2D>().size = new Vector2(1, 1);
+                        break;
+
+
+                }
+
                 break;
         }
     }

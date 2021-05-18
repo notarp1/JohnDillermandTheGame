@@ -14,6 +14,7 @@ TagManager:
   - weaponRange
   - groundItem
   - Quest
+  - FarmingGround
   layers:
   - Default
   - TransparentFX
@@ -50,6 +51,9 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Farming
+    uniqueID: 1189958015
     locked: 0
   - name: OnWorld
     uniqueID: 2425651459

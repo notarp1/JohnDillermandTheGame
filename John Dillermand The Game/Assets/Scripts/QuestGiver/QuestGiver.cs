@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = System.Random;
@@ -12,6 +13,7 @@ public class QuestGiver : MonoBehaviour
     private bool playerIsInRange = false;
     public PlayerAttributes attr;
     public bool isInitialized = false;
+    public GameObject textShower;
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +68,9 @@ public class QuestGiver : MonoBehaviour
         {
             setIsReadyToGiveQuest(false);
         }
+        textShower.GetComponentInChildren<TextMeshProUGUI>().SetText("Quest added!\nPress tab to show active quests");
+        textShower.SetActive(true);
+        StartCoroutine(hideText());
     }
 
     public Quest getQuest()
@@ -112,5 +117,11 @@ public class QuestGiver : MonoBehaviour
         } else setIsReadyToGiveQuest(false);
     }
 
+
+    private IEnumerator hideText()
+    {
+        yield return new WaitForSeconds(2);
+        textShower.SetActive(false);
+    }
 
 }
