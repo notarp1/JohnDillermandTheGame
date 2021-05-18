@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public string rotation;
     private bool behindObject = false;
     public bool facingRight = true; //Depends on if your animation is by default facing right or left
+    public bool stopup = true;
 
 
     // Start is called before the first frame update
@@ -44,12 +45,12 @@ public class PlayerMovement : MonoBehaviour
         else player.GetComponent<SpriteRenderer>().sortingOrder = 2;
 
 
-
+        movePlayer();
 
     }
     private void FixedUpdate()
     {
-        movePlayer();
+       
 
         float h = Input.GetAxis("Horizontal");
         if (h > 0 && !facingRight)
@@ -79,8 +80,58 @@ public class PlayerMovement : MonoBehaviour
 
         private void movePlayer()
     {
-        if (!Input.anyKey) anim.Play("Idle");
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.D)) {
+            Debug.Log("NBIGA");
+            stopup = true;
+        }
+        if (!Input.anyKey)
+        {
+            anim.Play("Idle");
+        
+        }
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+        {
+            stopup = false;
+            EnableHitbox("left");
+            anim.Play("JohnWalkingBack");
+            addY += speed * 0.7071f;
+            addX += speed * 0.7071f;
+
+        }
+
+        if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+        {
+            stopup = false;
+            EnableHitbox("right");
+            anim.Play("JohnWalkingBack");
+            addY += speed * 0.7071f;
+            addX -= speed * 0.7071f;
+
+        }
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+        {
+            stopup = false;
+            EnableHitbox("left");
+            anim.Play("JohnWalkingFront");
+            addY -= speed * 0.7071f;
+            addX -= speed * 0.7071f;
+
+        }
+
+        if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+        {
+            stopup = false;
+            EnableHitbox("right");
+            anim.Play("JohnWalkingFront");
+            addY -= speed * 0.7071f;
+            addX += speed * 0.7071f;
+
+        }
+
+
+
+        if (Input.GetKey(KeyCode.W) && stopup)
         {
 
             EnableHitbox("up");
@@ -88,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
             addY += speed;
 
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && stopup)
         {
             EnableHitbox("left");
             anim.Play("JohnAnimation");
@@ -96,13 +147,14 @@ public class PlayerMovement : MonoBehaviour
            // Vector3 move = new Vector3(-speed * Time.deltaTime, 0, 0);
            // transform.position += move;
         }
-        if (Input.GetKey(KeyCode.D))
+        
+        if (Input.GetKey(KeyCode.D) && stopup)
         {
             EnableHitbox("right");
             anim.Play("JohnAnimation");
             addX += speed;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && stopup)
         {
     
             EnableHitbox("down");

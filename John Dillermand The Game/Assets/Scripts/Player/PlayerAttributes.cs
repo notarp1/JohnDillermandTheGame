@@ -65,7 +65,7 @@ public class PlayerAttributes : MonoBehaviour
                     soundCanBePlayed = false;
                     audioSource.volume = 0.6f;
                     audioSource.clip = damageSound;
-                    //audioSource.Play();
+                    audioSource.Play();
                     StartCoroutine(soundIsPlayable(audioSource.clip));
                 }
                 else
@@ -73,7 +73,7 @@ public class PlayerAttributes : MonoBehaviour
                     soundCanBePlayed = false;
                     audioSource.volume = 0.8f;
                     audioSource.clip = deathSound;
-                    //audioSource.Play();
+                    audioSource.Play();
                     StartCoroutine(soundIsPlayable(audioSource.clip));
                     killPlayer();
                 }
@@ -226,7 +226,7 @@ public class PlayerAttributes : MonoBehaviour
 
     private IEnumerator hideText()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(10);
         textShower.SetActive(false);
     }
 
