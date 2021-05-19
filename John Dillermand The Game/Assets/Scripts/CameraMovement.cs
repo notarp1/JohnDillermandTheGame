@@ -21,7 +21,7 @@ public class CameraMovement : MonoBehaviour
         camera.transform.position = new Vector3(rounded_x, rounded_y, -10);
     }
 
-    float pixelToUnits = 100f;
+    float pixelToUnits = 100000f;
     public float RoundToNearestPixel(float unityUnits)
     {
         float valueInPixels = unityUnits * pixelToUnits;

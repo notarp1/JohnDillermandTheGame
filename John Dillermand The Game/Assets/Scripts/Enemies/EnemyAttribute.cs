@@ -66,7 +66,7 @@ public class EnemyAttribute : MonoBehaviour
             Quaternion.identity);
         Random rand = new Random();
         Item lootToAdd = lootItems[rand.Next(0, lootItems.Count)];
-        lootToAdd.setItemAmount(rand.Next(1,11));
+        lootToAdd.setItemAmount(rand.Next(1,5));
         loot.GetComponent<GroundItemInventory>().setItem(lootToAdd);
         player.GetComponent<PlayerAttributes>().checkQuests(objectsInQuest.enemy,objectives.kill,1);
         Destroy(enemy);
@@ -90,5 +90,6 @@ public class EnemyAttribute : MonoBehaviour
         //lootItems.Add(new HealItem("Potion", 0, itemTypes.HealItem, 10));
         //lootItems.Add(new HealItem("Poison", 0, itemTypes.HealItem, -5));
         lootItems.Add(new Money("CoinBag",0,itemTypes.Coin,coinAmount.coinBag));
+        lootItems.Add(new Seed("Sunflower Seed", 0, itemTypes.Seed));
     }
 }

@@ -15,6 +15,7 @@ TagManager:
   - groundItem
   - Quest
   - FarmingGround
+  - DungeonRoom
   layers:
   - Default
   - TransparentFX
@@ -57,6 +58,9 @@ TagManager:
     locked: 0
   - name: OnWorld
     uniqueID: 2425651459
+    locked: 0
+  - name: tree
+    uniqueID: 2586808485
     locked: 0
   - name: GameUI
     uniqueID: 4250941897

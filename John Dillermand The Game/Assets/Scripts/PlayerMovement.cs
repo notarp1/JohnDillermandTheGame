@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
 
         movePlayer();
 
+
     }
     private void FixedUpdate()
     {
-       
 
         float h = Input.GetAxis("Horizontal");
         if (h > 0 && !facingRight)

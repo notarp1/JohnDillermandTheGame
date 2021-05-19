@@ -23,7 +23,7 @@ public class PlayerInventory : MonoBehaviour
         if (!isLoaded)
         {
             items = new Item[10];
-            items[0] = new Weapon("Sword", 1, itemTypes.Weapon, 20, 0.5f, 2);
+            items[0] = new Weapon("Sword", 1, itemTypes.Weapon, 7, 0.4f, 1);
             items[1] = new HealItem("Potion", 30, itemTypes.HealItem, 10);
             items[2] = new Tool("Hoe", 1, itemTypes.Tool, 1);
             items[3] = new Seed("Sunflower Seed", 10, itemTypes.Seed);
