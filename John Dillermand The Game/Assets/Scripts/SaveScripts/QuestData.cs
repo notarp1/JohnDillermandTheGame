@@ -32,13 +32,13 @@ public class QuestData
         amountLeft = new int[questsToSave.Count];
         startValues = new int[questsToSave.Count];
 
-        questTitlesGiver = new string[questsToSave.Count];
-        objetivesGiver = new objectives[questsToSave.Count];
-        objectsGiver = new objectsInQuest[questsToSave.Count];
-        rewardsGiver = new rewards[questsToSave.Count];
-        rewardAmountGiver = new int[questsToSave.Count];
-        amountLeftGiver = new int[questsToSave.Count];
-        startValuesGiver = new int[questsToSave.Count];
+        questTitlesGiver = new string[questsToSaveGiver.Count];
+        objetivesGiver = new objectives[questsToSaveGiver.Count];
+        objectsGiver = new objectsInQuest[questsToSaveGiver.Count];
+        rewardsGiver = new rewards[questsToSaveGiver.Count];
+        rewardAmountGiver = new int[questsToSaveGiver.Count];
+        amountLeftGiver = new int[questsToSaveGiver.Count];
+        startValuesGiver = new int[questsToSaveGiver.Count];
 
 
         for (int i = 0; i < questsToSave.Count; i++)

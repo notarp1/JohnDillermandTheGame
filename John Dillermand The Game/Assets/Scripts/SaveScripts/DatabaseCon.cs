@@ -156,7 +156,7 @@ namespace ConsoleApp1
                 MySqlDataReader reader = (MySqlDataReader)await cmd.ExecuteReaderAsync();
                 while (reader.Read())
                 {
-                     res.Add(new ItemDTO(reader["name"]+"",Int32.Parse(reader["amount"]+"")));
+                     res.Add(new ItemDTO(reader["name"]+"",Int32.Parse(reader["amount"]+""), Int32.Parse(reader["ItemID"] + "")));
                 }
             }
             Close();

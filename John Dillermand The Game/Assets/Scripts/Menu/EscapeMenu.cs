@@ -44,7 +44,16 @@ public class EscapeMenu : MonoBehaviour
                         playerInven.addItem(new HealItem(playerData.inventoryItemNames[i], playerData.inventoryItemAmounts[i], itemTypes.HealItem, -5));
                         break;
                     case "Sword":
-                        playerInven.addItem(new Weapon("Sword", playerData.inventoryItemAmounts[i], itemTypes.Weapon, 20, 0.5f, 2));
+                        playerInven.addItem(new Weapon(playerData.inventoryItemNames[i], playerData.inventoryItemAmounts[i], itemTypes.Weapon, 20, 0.5f, 2));
+                        break;
+                    case "Hoe":
+                        playerInven.addItem(new Tool(playerData.inventoryItemNames[i], playerData.inventoryItemAmounts[i], itemTypes.Tool, 1));
+                        break;
+                    case "CoinBag":
+                        playerInven.addItem(new Money(playerData.inventoryItemNames[i], playerData.inventoryItemAmounts[i], itemTypes.Coin, coinAmount.coinBag));
+                        break;
+                    case "Sunflower Seed":
+                        playerInven.addItem(new Seed(playerData.inventoryItemNames[i], playerData.inventoryItemAmounts[i], itemTypes.Seed));
                         break;
                     default:
                         break;

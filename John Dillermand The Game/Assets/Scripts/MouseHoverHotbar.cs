@@ -54,6 +54,14 @@ public class MouseHoverHotbar : MonoBehaviour, IPointerEnterHandler, IPointerExi
                     textToInsert = "Item: " + ((Seed)item).getItemName() + "\nAmount left: " +
                                    ((Seed)item).getItemAmount();
                     break;
+                case itemTypes.Coin:
+                    textToInsert = "Item: " + ((Money)item).getItemName() + "\nAmount left: " +
+                                   ((Money)item).getItemAmount() + "\nAmount of money per item: " + (int)(((Money)item).getCoinAmount());
+                    break;
+                default:
+                    textToInsert = "Item: " + item.getItemName() + "\nAmount left: " +
+                                   item.getItemAmount();
+                    break;
 
             }
             text.SetText(textToInsert);
